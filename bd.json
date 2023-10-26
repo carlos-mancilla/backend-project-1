@@ -2,27 +2,10 @@
     "users": [
         {
             "id": 0,
-            "name": "Carlos Mancilla",
-            "email": "carlos@mail.com",
-            "phone": "+56998018104"
-        },
-        {
-            "name": "Cristóbal Mancilla",
-            "email": "cris@mail.com",
-            "phone": "+56998018104",
-            "id": 1
-        },
-        {
-            "name": "Cristóbal Mancilla",
-            "email": "cris@mail.com",
-            "phone": "+56998018104",
-            "id": 2
-        },
-        {
-            "name": "Carlos Mancilla",
-            "email": "carlos2@mail.com",
-            "phone": "+56999999",
-            "id": 3
+            "name": "Nombre",
+            "email": "mail@email.com",
+            "password": "$2a$10$tXB8Rg9sXYe.eZYy0nlk0uxg4kH.9rf.0JsTM2EtuiiMWF2M5Z.4O",
+            "phone": "+56999999"
         }
     ]
 }

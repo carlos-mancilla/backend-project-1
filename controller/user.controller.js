@@ -1,8 +1,11 @@
 const fs = require('fs/promises');
 const { 
-    getUserId,
     logger
 } = require('../utils');
+const {
+    getAllUsers,
+    getUserById: getUsrById
+} = require('../model');
 
 const bdPath = `${__dirname}/../${process.env.DATABASE_FILE}`;
 
@@ -10,7 +13,7 @@ logger.debug('bdPath:' + bdPath);
 
 const getUsers = async (req, res) => {
     try {
-        const usersBd = JSON.parse(await fs.readFile(bdPath, { encoding: "utf8" }));
+        const usersBd = await getAllUsers();
         logger.debug('usersBd:' , usersBd);
         res.json(usersBd);
     } catch (error) {
@@ -19,30 +22,10 @@ const getUsers = async (req, res) => {
     }
 }
 
-const createUser = async (req, res) => {
-    try {
-        const usersBd = JSON.parse(await fs.readFile(bdPath, { encoding: "utf8" }));
-        logger.debug('usersBd:' , usersBd);
-        const { user } = req.body;
-        user.id = getUserId(usersBd);
-        logger.debug('user:' , user);
-        usersBd.users.push(user);
-        logger.debug('usersBd:' , usersBd);
-        await fs.writeFile(bdPath, JSON.stringify(usersBd));
-        res.status(201).json(user);
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({message: error.message});
-    }
-};
-
 const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
-        logger.debug('id:' , id);
-        const usersBd = JSON.parse(await fs.readFile(bdPath, { encoding: "utf8" }));
-        logger.debug('usersBd:' , usersBd);
-        const user = usersBd.users.find((u) => u.id === Number(id));
+        const user = await getUsrById(id);
         if (user) {
             res.json(user);
             return;
@@ -56,6 +39,5 @@ const getUserById = async (req, res) => {
 
 module.exports = {
     getUsers,
-    createUser,
     getUserById
 }

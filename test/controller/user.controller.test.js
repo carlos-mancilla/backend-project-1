@@ -1,7 +1,6 @@
 const fs = require('fs/promises');
 const {
-    getUsers,
-    createUser
+    getUsers
 } = require('../../controller');
 
 jest.mock('fs', () => {
@@ -20,17 +19,10 @@ const mockGetAllUsers = {
             "id": 0,
             "name": "Carlos Mancilla",
             "email": "carlos@mail.com",
+            "password": "123456789",
             "phone": "+56998018104"
         }
     ]
-};
-
-const mockCreateUser = {
-    user: {
-        name: 'Cristóbal Mancilla',
-        email: 'cris@mail.com',
-        phone: '+56998018104'
-    }
 };
 
 const mockResponse = {
@@ -46,20 +38,6 @@ describe('user tests', () => {
             );
             await getUsers({}, mockResponse);
             expect(fs.readFile).toHaveBeenCalled();
-        });
-    });
-
-    describe('crea usuario', () => {
-        it('caso exitoso', async () => {
-            fs.readFile = jest.fn().mockImplementation(async () =>
-                Promise.resolve(JSON.stringify(mockGetAllUsers))
-            );
-            fs.writeFile = jest.fn().mockImplementation(async () =>
-                Promise.resolve(JSON.stringify('some-value'))
-            );
-            await createUser({ body: mockCreateUser }, mockResponse);
-            expect(fs.readFile).toHaveBeenCalled();
-            expect(fs.writeFile).toHaveBeenCalled();
         });
     });
 });

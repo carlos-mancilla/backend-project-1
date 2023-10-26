@@ -1,4 +1,4 @@
-# Proyecto Backend 1
+# Proyecto Backend parte 2
 
 Se recomienda usar Node.js 18+. Se debe ejecutar `npm install` para instalar las dependencias una vez descargado el proyecto.
 
@@ -15,6 +15,8 @@ El archivo usado como bbdd es un archivo .json y debe tener como mínimo la sigu
 ```
 
 El proyecto incluye un archivo bd.json para poder ser utilizado.
+
+En esta segunda parte se agregó seguridad con JWT.
 
 ## Scripts disponibles
 

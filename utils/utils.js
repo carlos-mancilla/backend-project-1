@@ -27,7 +27,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const getUserId = (usersBd) => {
-    return new Number(Object.keys(usersBd.users)[Object.keys(usersBd.users).length - 1]) + 1;
+    if (Object.keys(usersBd.users)) {
+        if (Object.keys(usersBd.users).length === 0) {
+            return 0
+        }
+        return new Number(Object.keys(usersBd.users)[Object.keys(usersBd.users).length - 1]) + 1;
+    }
+    throw new Error('No fue posible generar el id');
 };
 
 module.exports = {

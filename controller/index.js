@@ -1,11 +1,15 @@
 const {
     getUsers,
-    createUser,
     getUserById
 } = require('./user.controller');
+const {
+    signup,
+    signin
+} = require('./sing.controller');
 
 module.exports = {
     getUsers,
-    createUser,
-    getUserById
+    getUserById,
+    signup,
+    signin
 }
